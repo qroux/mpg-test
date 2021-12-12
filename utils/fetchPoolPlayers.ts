@@ -23,6 +23,7 @@ export const fetchPoolPlayers = async ({
     );
 
     setPlayers(sortedList);
+    return sortedList;
   } catch (err) {
     errorAlert();
   }

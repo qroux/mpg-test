@@ -22,4 +22,6 @@ export const filterPlayers = ({
     : players.filter((player) => player.ultraPosition === position);
 
   setFilteredList(filtered);
+
+  return filtered;
 };

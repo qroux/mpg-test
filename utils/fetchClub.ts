@@ -18,6 +18,7 @@ export const fetchClub = async ({ player, setClub }: FunctionParams) => {
     const club = championshipClubs[player.clubId];
 
     setClub(club);
+    return club;
   } catch (err) {
     errorAlert();
   }

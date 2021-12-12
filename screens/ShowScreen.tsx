@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet } from 'react-native';
-import axios from 'axios';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { Positions } from '../constants/Data';
 import { Club, Player } from '../types/CustomTypes';
 import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
-import { Text, View } from '../components/Themed';
 import { RootStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import PlayerChart from '../components/ShowScreen/PlayerChart';

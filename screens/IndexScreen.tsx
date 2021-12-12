@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, FlatList } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { StyleSheet, FlatList, Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
-import axios from 'axios';
 
 import { Picker } from '@react-native-picker/picker';
 import { Leagues, Positions } from '../constants/Data';
-import {
-  Player,
-  PoolIndex,
-  PoolPlayerData,
-  PositionValues,
-} from '../types/CustomTypes';
+import { Player, PoolIndex, PositionValues } from '../types/CustomTypes';
 import { PlayerRow } from '../components/IndexScreen/PlayerRow';
 import CustomSearchbar from '../components/IndexScreen/CustomSearchbar';
 import { filterPlayers } from '../utils/filterPlayers';
