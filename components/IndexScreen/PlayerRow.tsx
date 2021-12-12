@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Avatar, ListItem } from 'react-native-elements';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList, RootTabParamList } from '../../types';
 import { Club, Player } from '../../types/CustomTypes';
@@ -14,23 +14,27 @@ type PlayerProps = {
   >;
   player: Player;
   club: Club;
+  rating: number | string;
 };
 
 export class PlayerRow extends React.PureComponent<PlayerProps> {
   render() {
-    const { navigation, player, club } = this.props;
+    const { navigation, player, club, rating } = this.props;
 
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Show', { player, club });
+          navigation.navigate('Show', { player, club, rating });
         }}>
         <ListItem key={player.id} bottomDivider>
+          <Avatar source={{ uri: club.defaultJerseyUrl }} />
           <ListItem.Content>
             <ListItem.Title>
               {player.firstName} {player.lastName}
             </ListItem.Title>
-            <ListItem.Subtitle> {club.name['fr-FR']}</ListItem.Subtitle>
+            <ListItem.Subtitle>
+              {club.name['fr-FR']} - Note: {rating}
+            </ListItem.Subtitle>
           </ListItem.Content>
           {/* @ts-ignore https://github.com/react-native-elements/react-native-elements/issues/3231 */}
           <ListItem.Chevron />

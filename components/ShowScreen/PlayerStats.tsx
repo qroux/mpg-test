@@ -20,7 +20,10 @@ export default function PlayerStats({ player }: { player: Player }) {
       />
       <FullRow label='Buts' value={player.stats.totalGoals} />
       <FullRow label='Matchs joués' value={player.stats.totalPlayedMatches} />
-      <FullRow label='Temps de jeu cumulé (min)' value={playingTime} />
+      <FullRow
+        label='Temps de jeu cumulé (min)'
+        value={playingTime === 0 ? '-' : playingTime}
+      />
     </View>
   );
 }

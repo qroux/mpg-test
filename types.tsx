@@ -16,7 +16,7 @@ declare global {
 
 export type RootStackParamList = {
   Index: undefined;
-  Show: { player: Player; club: Club };
+  Show: { player: Player; club: Club; rating: number | string };
   NotFound: undefined;
 };
 

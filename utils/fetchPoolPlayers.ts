@@ -5,12 +5,15 @@ import { errorAlert } from './errorAlert';
 type FunctionParams = {
   league: PoolIndex;
   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const fetchPoolPlayers = async ({
   league,
   setPlayers,
+  setIsLoading,
 }: FunctionParams) => {
+  setIsLoading(true);
   try {
     const {
       data: { poolPlayers },
@@ -23,8 +26,10 @@ export const fetchPoolPlayers = async ({
     );
 
     setPlayers(sortedList);
+    setIsLoading(false);
     return sortedList;
   } catch (err) {
     errorAlert();
   }
+  setIsLoading(false);
 };

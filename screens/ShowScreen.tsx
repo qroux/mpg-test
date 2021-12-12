@@ -14,7 +14,9 @@ export default function ShowScreen({
 }: NativeStackScreenProps<RootStackParamList, 'Show'>) {
   const { player, club }: { player: Player; club: Club } = route.params;
 
-  // ENDPOINT WORKING BUT PROVIDES NO USABLE STATS  => https://api.mpg.football/api/data/championship-player-stats/mpg_championship_player_220160/summary
+  // ENDPOINT WORKING BUT PROVIDES NO USABLE STATS
+  // => https://api.mpg.football/api/data/championship-player-stats/mpg_championship_player_220160/summary
+  //
   // const [stats, setStats] = useState<any>();
   // useEffect(() => {
   //   fetchPlayerStats({playerId: player.id, setStats})

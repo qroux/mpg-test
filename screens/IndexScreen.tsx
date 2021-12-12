@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, FlatList, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  View,
+  ActivityIndicator,
+} from 'react-native';
 import { RootTabScreenProps } from '../types';
 
 import { Picker } from '@react-native-picker/picker';
@@ -25,10 +31,11 @@ export default function IndexScreen({
   const [filteredList, setFilteredList] = useState<Player[]>([]);
   const [league, setLeague] = useState<PoolIndex>(1);
   const [position, setPosition] = useState<PositionValues>(40);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchClubs({ setClubs });
-    fetchPoolPlayers({ league, setPlayers });
+    fetchClubs({ setClubs, setIsLoading });
+    fetchPoolPlayers({ league, setPlayers, setIsLoading });
   }, [league]);
 
   useEffect(() => {
@@ -76,7 +83,14 @@ export default function IndexScreen({
         </View>
       </View>
 
-      <Text style={styles.title}>{filteredList.length} résultat(s)</Text>
+      <View style={styles.listHeader}>
+        <ActivityIndicator
+          size='small'
+          color='dodgerblue'
+          animating={isLoading}
+        />
+        <Text style={styles.listTitle}>{filteredList.length} résultat(s)</Text>
+      </View>
 
       <FlatList
         data={filteredList}
@@ -85,6 +99,11 @@ export default function IndexScreen({
             player={item}
             club={clubs[item.clubId]}
             navigation={navigation}
+            rating={
+              item.stats.averageRating
+                ? item.stats.averageRating.toFixed(2)
+                : '-'
+            }
           />
         )}
         style={{
@@ -103,10 +122,16 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 20,
   },
-  title: {
+  listHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  listSpinner: {},
+  listTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    alignSelf: 'flex-end',
+
     marginVertical: 10,
   },
   pickerContainer: {
