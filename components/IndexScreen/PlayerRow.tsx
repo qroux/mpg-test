@@ -1,17 +1,23 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types';
 import { Player } from '../../types/CustomTypes';
 
-type PlayerProps = { player: Player; navigation: any };
+type PlayerProps = {
+  player: Player;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Index'>;
+};
 
 export class PlayerRow extends React.PureComponent<PlayerProps> {
   render() {
     const { player, navigation } = this.props;
+
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Show', { player: player });
+          navigation.navigate('Show', { player });
         }}>
         <ListItem key={player.id} bottomDivider>
           <ListItem.Content>
@@ -20,7 +26,7 @@ export class PlayerRow extends React.PureComponent<PlayerProps> {
             </ListItem.Title>
             {/* <ListItem.Subtitle> </ListItem.Subtitle> */}
           </ListItem.Content>
-          {/* @ts-ignore https://github.com/react-native-elements/react-native-elements/issues/3231*/}
+          {/* @ts-ignore https://github.com/react-native-elements/react-native-elements/issues/3231 */}
           <ListItem.Chevron />
         </ListItem>
       </TouchableOpacity>

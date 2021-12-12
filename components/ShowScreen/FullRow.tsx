@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.05)',
     marginBottom: 2,
     height: 50,
+    borderRadius: 5,
   },
   header: {
     padding: 15,

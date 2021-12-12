@@ -7,8 +7,13 @@ import { Player } from '../types/CustomTypes';
 import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
 import { Text, View } from '../components/Themed';
+import { RootStackParamList } from '../types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import PlayerChart from '../components/ShowScreen/PlayerChart';
 
-export default function ShowScreen({ route }: { route: any }) {
+export default function ShowScreen({
+  route,
+}: NativeStackScreenProps<RootStackParamList, 'Show'>) {
   const { player }: { player: Player } = route.params;
   const [club, setClub] = useState<any>();
   // const [seasons, setSeasons] = useState([]);
@@ -83,6 +88,7 @@ export default function ShowScreen({ route }: { route: any }) {
       </View>
 
       <PlayerStats player={player} />
+      <PlayerChart />
     </View>
   );
 }
@@ -91,10 +97,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 30,
-    paddingBottom: 30,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingVertical: 30,
+    paddingHorizontal: 15,
   },
   player: {
     margin: 20,

@@ -37,7 +37,7 @@ export default function IndexScreen({
             (player.firstName?.includes(name) ||
               player.lastName?.includes(name))
         )
-      : players.filter((player: any) => player.ultraPosition === position);
+      : players.filter((player) => player.ultraPosition === position);
 
     setFilteredList(filtered);
   }, [name, league, position, players]);
@@ -114,9 +114,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 16,

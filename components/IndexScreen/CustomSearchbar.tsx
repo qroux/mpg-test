@@ -21,11 +21,10 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     backgroundColor: 'rgba(0,0,0,0.07)',
-    borderBottomColor: 'transparent',
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
-    fontSize: 18,
-    height: 55,
+    fontSize: 16,
+    height: 50,
   },
 });

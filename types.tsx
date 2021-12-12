@@ -6,6 +6,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Player } from './types/CustomTypes';
 
 declare global {
   namespace ReactNavigation {
@@ -15,9 +16,7 @@ declare global {
 
 export type RootStackParamList = {
   Index: undefined;
-  Show: {
-    route: string | number;
-  };
+  Show: { player: Player };
   NotFound: undefined;
 };
 
