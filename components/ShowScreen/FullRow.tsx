@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 
 type RowProps = {
   label: string;
-  value?: number;
+  value?: number | string;
 };
 
 export const FullRow = ({ label, value }: RowProps) => (
@@ -12,7 +12,7 @@ export const FullRow = ({ label, value }: RowProps) => (
       <Text style={styles.bold}>{label}</Text>
     </View>
     <View style={styles.content}>
-      <Text style={styles.normal}>{value}</Text>
+      <Text style={styles.normal}>{value === undefined ? '-' : value}</Text>
     </View>
   </View>
 );
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 15,
-    maxWidth: 150,
+
     alignItems: 'flex-start',
   },
   bold: {

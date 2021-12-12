@@ -4,15 +4,23 @@ import { Player } from '../../types/CustomTypes';
 import { FullRow } from './FullRow';
 
 export default function PlayerStats({ player }: { player: Player }) {
+  const playingTime = player.stats.matches.reduce(
+    (acc, match) =>
+      match.playerPerformance.minutesPlayed
+        ? acc + match.playerPerformance.minutesPlayed
+        : acc,
+    0
+  );
+
   return (
     <View style={styles.container}>
-      {/* <FullRow
-        title='Note'
-        content={parseFloat(player.stats.averageRating).toFixed(2)}
-      /> */}
-
-      <FullRow label='Matchs joués' value={player.stats.totalPlayedMatches} />
+      <FullRow
+        label='Note Moyenne'
+        value={player.stats.averageRating?.toFixed(2)}
+      />
       <FullRow label='Buts' value={player.stats.totalGoals} />
+      <FullRow label='Matchs joués' value={player.stats.totalPlayedMatches} />
+      <FullRow label='Temps de jeu cumulé (min)' value={playingTime} />
     </View>
   );
 }

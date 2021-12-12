@@ -1,4 +1,4 @@
-import { filterPlayers } from './filterPlayers';
+import { filterPlayers } from '../utils/filterPlayers';
 import axios from 'axios';
 
 describe('Filter function tests', () => {

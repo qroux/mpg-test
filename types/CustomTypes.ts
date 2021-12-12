@@ -12,6 +12,10 @@ export type Match = {
   away: Team;
   playerPerformance: {
     status: number;
+    rating: number;
+    goals: number;
+    ownGoals: number;
+    minutesPlayed: number;
   };
 };
 

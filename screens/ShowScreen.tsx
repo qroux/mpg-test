@@ -7,7 +7,6 @@ import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
 import { RootStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import PlayerChart from '../components/ShowScreen/PlayerChart';
 import { fetchClub } from '../utils/fetchClub';
 
 export default function ShowScreen({
@@ -65,13 +64,10 @@ export default function ShowScreen({
       </View>
 
       <View style={styles.seasonContainer}>
-        <Text style={styles.season}>
-          Statistiques pour la saison | 2021 - 2022
-        </Text>
+        <Text style={styles.season}>Statistiques saison | 2021 - 2022</Text>
       </View>
 
       <PlayerStats player={player} />
-      <PlayerChart />
     </View>
   );
 }
