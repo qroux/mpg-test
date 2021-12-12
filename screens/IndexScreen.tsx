@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   },
   pickerWrapper: {
     width: '49%',
+    height: 50,
     justifyContent: 'center',
     alignItems: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0.07)',
@@ -143,5 +144,6 @@ const styles = StyleSheet.create({
     width: '100%',
     color: 'black',
     fontWeight: 'bold',
+    fontSize: 16,
   },
 });
