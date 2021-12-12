@@ -7,19 +7,20 @@ import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
 import { RootStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { fetchPlayerStats } from '../utils/fetchPlayerStats';
+// import { fetchPlayerStats } from '../utils/fetchPlayerStats';
 
 export default function ShowScreen({
   route,
 }: NativeStackScreenProps<RootStackParamList, 'Show'>) {
   const { player, club }: { player: Player; club: Club } = route.params;
+
+  // ENDPOINT WORKING BUT PROVIDES NO USABLE STATS  => https://api.mpg.football/api/data/championship-player-stats/mpg_championship_player_220160/summary
   // const [stats, setStats] = useState<any>();
+  // useEffect(() => {
+  //   fetchPlayerStats({playerId: player.id, setStats})
+  // }, []);
 
-  useEffect(() => {
-    // fetchPlayerStats({playerId: player.id, setStats})
-  }, []);
-
-  const renderJersey = club ? (
+  const renderJersey = club?.defaultJerseyUrl ? (
     <Image
       source={{
         uri: club.defaultJerseyUrl,
