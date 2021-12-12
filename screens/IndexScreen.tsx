@@ -14,6 +14,8 @@ import {
 } from '../types/CustomTypes';
 import { PlayerRow } from '../components/IndexScreen/PlayerRow';
 import CustomSearchbar from '../components/IndexScreen/CustomSearchbar';
+import { filterPlayers } from '../utils/filterPlayers';
+import { fetchPoolPlayers } from '../utils/fetchPoolPlayers';
 
 export default function IndexScreen({
   navigation,
@@ -26,36 +28,12 @@ export default function IndexScreen({
 
   // LIFE CYCLE
   useEffect(() => {
-    fetchData();
+    fetchPoolPlayers({ league, setPlayers });
   }, [league]);
 
   useEffect(() => {
-    const filtered = name
-      ? players.filter(
-          (player) =>
-            player.ultraPosition === position &&
-            (player.firstName?.includes(name) ||
-              player.lastName?.includes(name))
-        )
-      : players.filter((player) => player.ultraPosition === position);
-
-    setFilteredList(filtered);
+    filterPlayers({ name, position, players, setFilteredList });
   }, [name, league, position, players]);
-
-  // UTILS
-  const fetchData = async () => {
-    const {
-      data: { poolPlayers },
-    }: PoolPlayerData = await axios.get(
-      `https://api.mpg.football/api/data/championship-players-pool/${league}`
-    );
-
-    const sortedList = poolPlayers.sort((a: Player, b: Player) =>
-      a.lastName.localeCompare(b.lastName)
-    );
-
-    setPlayers(sortedList);
-  };
 
   // LIST RENDERING
   const leagueItems = Leagues.map((league) => (
@@ -79,7 +57,7 @@ export default function IndexScreen({
           <Picker
             style={styles.picker}
             selectedValue={position}
-            onValueChange={(itemValue, itemIndex) => {
+            onValueChange={(itemValue) => {
               setPosition(itemValue);
             }}>
             {positionItems}
@@ -90,7 +68,7 @@ export default function IndexScreen({
           <Picker
             style={styles.picker}
             selectedValue={league}
-            onValueChange={(itemValue, itemIndex) => {
+            onValueChange={(itemValue) => {
               setLeague(itemValue);
             }}>
             {leagueItems}
@@ -98,7 +76,7 @@ export default function IndexScreen({
         </View>
       </View>
 
-      <Text style={{ ...styles.title }}>{filteredList.length} résultat(s)</Text>
+      <Text style={styles.title}>{filteredList.length} résultat(s)</Text>
 
       <FlatList
         data={filteredList}

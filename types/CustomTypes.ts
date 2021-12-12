@@ -61,10 +61,18 @@ type Jersey = {
 export type Club = {
   championships: {
     2: Jersey;
-    6: Jersey;
+    6?: Jersey;
   };
   id: string;
   name: Name;
   shortName: string;
   defaultJerseyUrl: string;
+};
+
+export type ChampionshipClubs = {
+  data: {
+    championshipClubs: {
+      [key: string]: Club;
+    };
+  };
 };

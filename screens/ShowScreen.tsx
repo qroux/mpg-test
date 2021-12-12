@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, Alert } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 import { Positions } from '../constants/Data';
@@ -10,6 +10,7 @@ import { Text, View } from '../components/Themed';
 import { RootStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import PlayerChart from '../components/ShowScreen/PlayerChart';
+import { fetchClub } from '../utils/fetchClub';
 
 export default function ShowScreen({
   route,
@@ -17,23 +18,6 @@ export default function ShowScreen({
   const { player }: { player: Player } = route.params;
   const [club, setClub] = useState<Club>();
   // const [seasons, setSeasons] = useState([]);
-
-  const fetchClub = async () => {
-    try {
-      const response = await axios.get(
-        'https://api.mpg.football/api/data/championship-clubs'
-      );
-      const club = response.data.championshipClubs[player.clubId];
-
-      setClub(club);
-    } catch (err) {
-      Alert.alert(
-        'Erreur',
-        'Une erreur est survenue lors du chargement. Réessayer dans un instant.',
-        [{ text: 'OK' }]
-      );
-    }
-  };
 
   // const fetchChampionship = async () => {
   //   try {
@@ -53,7 +37,7 @@ export default function ShowScreen({
   // };
 
   useEffect(() => {
-    fetchClub();
+    fetchClub({ player, setClub });
     // fetchChampionship();
   }, []);
 
@@ -84,7 +68,7 @@ export default function ShowScreen({
 
       <View style={styles.seasonContainer}>
         <Text style={styles.season}>
-          Statistiques pour la saison : 2021 - 2022
+          Statistiques pour la saison | 2021 - 2022
         </Text>
       </View>
 
