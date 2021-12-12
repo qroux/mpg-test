@@ -7,35 +7,16 @@ import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
 import { RootStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { fetchClub } from '../utils/fetchClub';
+import { fetchPlayerStats } from '../utils/fetchPlayerStats';
 
 export default function ShowScreen({
   route,
 }: NativeStackScreenProps<RootStackParamList, 'Show'>) {
-  const { player }: { player: Player } = route.params;
-  const [club, setClub] = useState<Club>();
-  // const [seasons, setSeasons] = useState([]);
-
-  // const fetchChampionship = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://api.mpg.football/api/data/championship-player-stats/${player.id}/summary`
-  //     );
-  //     const years = response.data.statsSeasons;
-
-  //     setSeasons(years);
-  //   } catch (err) {
-  //     Alert.alert(
-  //       'Erreur',
-  //       'Une erreur est survenue lors du chargement. Réessayer dans un instant.',
-  //       [{ text: 'OK' }]
-  //     );
-  //   }
-  // };
+  const { player, club }: { player: Player; club: Club } = route.params;
+  // const [stats, setStats] = useState<any>();
 
   useEffect(() => {
-    fetchClub({ player, setClub });
-    // fetchChampionship();
+    // fetchPlayerStats({playerId: player.id, setStats})
   }, []);
 
   const renderJersey = club ? (
@@ -59,7 +40,7 @@ export default function ShowScreen({
           {player.firstName} {player.lastName}
         </Text>
         <Text style={styles.position}>
-          {Positions[player.ultraPosition].label} à {club?.name['fr-FR']}
+          {Positions[player.ultraPosition].label} à {club.name['fr-FR']}
         </Text>
       </View>
 

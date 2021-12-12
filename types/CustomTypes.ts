@@ -74,9 +74,11 @@ export type Club = {
 };
 
 export type ChampionshipClubs = {
+  [key: string]: Club;
+};
+
+export type ChampionshipClubsResponse = {
   data: {
-    championshipClubs: {
-      [key: string]: Club;
-    };
+    championshipClubs: ChampionshipClubs;
   };
 };

@@ -4,23 +4,30 @@ import { RootTabScreenProps } from '../types';
 
 import { Picker } from '@react-native-picker/picker';
 import { Leagues, Positions } from '../constants/Data';
-import { Player, PoolIndex, PositionValues } from '../types/CustomTypes';
+import {
+  ChampionshipClubs,
+  Player,
+  PoolIndex,
+  PositionValues,
+} from '../types/CustomTypes';
 import { PlayerRow } from '../components/IndexScreen/PlayerRow';
 import CustomSearchbar from '../components/IndexScreen/CustomSearchbar';
 import { filterPlayers } from '../utils/filterPlayers';
 import { fetchPoolPlayers } from '../utils/fetchPoolPlayers';
+import { fetchClubs } from '../utils/fetchClubs';
 
 export default function IndexScreen({
   navigation,
 }: RootTabScreenProps<'Index'>) {
   const [name, setName] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
+  const [clubs, setClubs] = useState<ChampionshipClubs>({});
   const [filteredList, setFilteredList] = useState<Player[]>([]);
   const [league, setLeague] = useState<PoolIndex>(1);
   const [position, setPosition] = useState<PositionValues>(40);
 
-  // LIFE CYCLE
   useEffect(() => {
+    fetchClubs({ setClubs });
     fetchPoolPlayers({ league, setPlayers });
   }, [league]);
 
@@ -74,7 +81,11 @@ export default function IndexScreen({
       <FlatList
         data={filteredList}
         renderItem={({ item }) => (
-          <PlayerRow player={item} navigation={navigation} />
+          <PlayerRow
+            player={item}
+            club={clubs[item.clubId]}
+            navigation={navigation}
+          />
         )}
         style={{
           height: 300,
