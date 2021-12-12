@@ -7,8 +7,8 @@ import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import { Leagues, Positions } from '../constants/Data';
 import {
-  League,
   Player,
+  PoolIndex,
   PoolPlayerData,
   PositionValues,
 } from '../types/CustomTypes';
@@ -21,7 +21,7 @@ export default function IndexScreen({
   const [name, setName] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
   const [filteredList, setFilteredList] = useState<Player[]>([]);
-  const [league, setLeague] = useState<League>(1);
+  const [league, setLeague] = useState<PoolIndex>(1);
   const [position, setPosition] = useState<PositionValues>(40);
 
   // LIFE CYCLE

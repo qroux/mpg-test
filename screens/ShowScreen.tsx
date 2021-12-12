@@ -3,7 +3,7 @@ import { Image, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 
 import { Positions } from '../constants/Data';
-import { Player } from '../types/CustomTypes';
+import { Club, Player } from '../types/CustomTypes';
 import PlayerStats from '../components/ShowScreen/PlayerStats';
 import ImagePlaceholder from '../components/ShowScreen/ImagePlaceholder';
 import { Text, View } from '../components/Themed';
@@ -15,7 +15,7 @@ export default function ShowScreen({
   route,
 }: NativeStackScreenProps<RootStackParamList, 'Show'>) {
   const { player }: { player: Player } = route.params;
-  const [club, setClub] = useState<any>();
+  const [club, setClub] = useState<Club>();
   // const [seasons, setSeasons] = useState([]);
 
   const fetchClub = async () => {
@@ -24,6 +24,7 @@ export default function ShowScreen({
         'https://api.mpg.football/api/data/championship-clubs'
       );
       const club = response.data.championshipClubs[player.clubId];
+
       setClub(club);
     } catch (err) {
       Alert.alert(

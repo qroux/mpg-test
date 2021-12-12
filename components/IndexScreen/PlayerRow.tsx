@@ -2,12 +2,17 @@ import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types';
+import { RootStackParamList, RootTabParamList } from '../../types';
 import { Player } from '../../types/CustomTypes';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 type PlayerProps = {
   player: Player;
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Index'>;
+  navigation: CompositeNavigationProp<
+    BottomTabNavigationProp<RootTabParamList, 'Index'>,
+    NativeStackNavigationProp<RootStackParamList, 'Index'>
+  >;
 };
 
 export class PlayerRow extends React.PureComponent<PlayerProps> {

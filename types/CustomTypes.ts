@@ -1,5 +1,3 @@
-export type Championship = {};
-
 export type Team = {
   clubId: string;
   score: number;
@@ -42,6 +40,31 @@ export type PoolPlayerData = {
   };
 };
 
-export type League = 1 | 2 | 3 | 4 | 5 | 6;
-
+// FILTERING
+export type PoolIndex = 1 | 2 | 3 | 4 | 5 | 6;
 export type PositionValues = 10 | 20 | 21 | 30 | 31 | 40;
+
+// CLUB
+type Name = {
+  'fr-FR': string;
+  'en-GB': string;
+  'es-ES': string;
+};
+
+type Jersey = {
+  jerseys: {
+    [key: string]: string;
+  };
+  active: boolean;
+};
+
+export type Club = {
+  championships: {
+    2: Jersey;
+    6: Jersey;
+  };
+  id: string;
+  name: Name;
+  shortName: string;
+  defaultJerseyUrl: string;
+};

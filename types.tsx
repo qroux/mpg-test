@@ -26,7 +26,8 @@ export type RootStackScreenProps<
 
 export type RootTabParamList = {
   Index: undefined;
-  Show: undefined;
+  Show: { player: Player };
+  NotFound: undefined;
 };
 
 export type RootTabScreenProps<
