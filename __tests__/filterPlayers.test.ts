@@ -1,15 +1,16 @@
 import { filterPlayers } from '../utils/filterPlayers';
 import axios from 'axios';
+import { Player, PoolPlayerData, PositionValues } from '../types/CustomTypes';
 
 describe('Filter function tests', () => {
-  let players;
+  let players: Player[];
   const setRessourceMock = jest.fn(() => null);
 
   beforeAll(async () => {
     const league = 1;
     const {
       data: { poolPlayers },
-    } = await axios.get(
+    }: PoolPlayerData = await axios.get(
       `https://api.mpg.football/api/data/championship-players-pool/${league}`
     );
 
@@ -20,8 +21,22 @@ describe('Filter function tests', () => {
     expect(players).toBeDefined();
   });
 
+  it('Triggers setRessourceMock on api request success', async () => {
+    const name = 'Arkadiusz';
+    const position: PositionValues = 10;
+
+    filterPlayers({
+      name,
+      players,
+      position,
+      setFilteredList: setRessourceMock,
+    });
+
+    expect(setRessourceMock).toBeCalled();
+  });
+
   it('Filters players by ultraPosition WITHOUT name', async () => {
-    const position = 40;
+    const position: PositionValues = 40;
 
     const list = filterPlayers({
       name: '',
@@ -39,7 +54,7 @@ describe('Filter function tests', () => {
 
   it('Filters players by ultraPosition WITH name as player.lastName', async () => {
     const name = 'Payet';
-    const position = 31;
+    const position: PositionValues = 31;
 
     const list = filterPlayers({
       name,
@@ -55,7 +70,7 @@ describe('Filter function tests', () => {
 
   it('Filters players by ultraPosition WITH name as player.firstName', async () => {
     const name = 'Arkadiusz';
-    const position = 40;
+    const position: PositionValues = 40;
 
     const list = filterPlayers({
       name,
@@ -71,7 +86,7 @@ describe('Filter function tests', () => {
 
   it('Returns no results if wrong ultraPosition for existing player.firstName', async () => {
     const name = 'Arkadiusz';
-    const position = 10;
+    const position: PositionValues = 10;
 
     const list = filterPlayers({
       name,

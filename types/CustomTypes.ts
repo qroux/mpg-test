@@ -1,3 +1,6 @@
+export type PoolIndex = 1 | 2 | 3 | 4 | 5 | 6;
+export type PositionValues = 10 | 20 | 21 | 30 | 31 | 40;
+
 export type Team = {
   clubId: string;
   score: number;
@@ -24,7 +27,7 @@ export type Player = {
   firstName: string;
   lastName: string;
   position: number;
-  ultraPosition: number;
+  ultraPosition: PositionValues;
   quotation: number;
   clubId: string;
   stats: {
@@ -43,10 +46,6 @@ export type PoolPlayerData = {
     poolPlayers: Player[];
   };
 };
-
-// FILTERING
-export type PoolIndex = 1 | 2 | 3 | 4 | 5 | 6;
-export type PositionValues = 10 | 20 | 21 | 30 | 31 | 40;
 
 // CLUB
 type Name = {
