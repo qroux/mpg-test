@@ -13,11 +13,14 @@ export const filterPlayers = ({
   position,
   setFilteredList,
 }: FilterParams) => {
-  const filtered = name
+  const filter = name ? name.toLowerCase() : null;
+
+  const filtered = filter
     ? players.filter(
         (player) =>
           player.ultraPosition === position &&
-          (player.firstName?.includes(name) || player.lastName?.includes(name))
+          (player.firstName?.toLowerCase().includes(filter) ||
+            player.lastName?.toLowerCase().includes(filter))
       )
     : players.filter((player) => player.ultraPosition === position);
 

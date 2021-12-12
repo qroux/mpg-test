@@ -97,4 +97,26 @@ describe('Filter function tests', () => {
 
     expect(list[0]).toBeUndefined();
   });
+
+  it('Filter is case insensitive', async () => {
+    const name = "M'baye";
+    const position: PositionValues = 40;
+
+    const capitalizedResult = filterPlayers({
+      name,
+      players,
+      position,
+      setFilteredList: setRessourceMock,
+    });
+
+    const lowercaseResult = filterPlayers({
+      name: name.toLowerCase(),
+      players,
+      position,
+      setFilteredList: setRessourceMock,
+    });
+
+    expect(capitalizedResult[0]).toBeDefined();
+    expect(lowercaseResult[0]).toBeDefined();
+  });
 });
