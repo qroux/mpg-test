@@ -50,7 +50,11 @@ export default function IndexScreen({
       `https://api.mpg.football/api/data/championship-players-pool/${league}`
     );
 
-    setPlayers(poolPlayers);
+    const sortedList = poolPlayers.sort((a: Player, b: Player) =>
+      a.lastName.localeCompare(b.lastName)
+    );
+
+    setPlayers(sortedList);
   };
 
   // LIST RENDERING
