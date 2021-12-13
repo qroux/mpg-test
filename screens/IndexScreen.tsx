@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  Text,
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
 import { Picker } from '@react-native-picker/picker';

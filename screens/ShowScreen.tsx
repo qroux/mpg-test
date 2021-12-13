@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
+import { View, Text } from '../components/Themed';
 
 import { Positions } from '../constants/Data';
 import { Club, Player } from '../types/CustomTypes';
@@ -26,12 +27,12 @@ export default function ShowScreen({
     <Image
       source={{
         uri: club.defaultJerseyUrl,
-        height: 150,
-        width: 150,
+        height: 100,
+        width: 100,
       }}
     />
   ) : (
-    <ImagePlaceholder size={150} />
+    <ImagePlaceholder size={100} />
   );
 
   return (

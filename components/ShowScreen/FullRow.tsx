@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View, Text } from '../Themed';
 
 type RowProps = {
   label: string;
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 15,
+    backgroundColor: 'rgba(0,0,0,0.05)',
 
     alignItems: 'flex-start',
   },
@@ -41,5 +43,6 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignItems: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.05)',
   },
 });

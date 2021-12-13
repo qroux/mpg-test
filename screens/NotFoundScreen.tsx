@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text } from '../components/Themed';
 
 import { RootStackScreenProps } from '../types';
 
